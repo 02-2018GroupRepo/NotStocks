@@ -37,7 +37,9 @@ public class StockPriceService {
 	
     public void getStock(StockPrice supplier){
     	String ip = supplier.getIp();
-        String tURL = "http://192.168.88." + ip + ":8080/company";
+      //String tURL = "http://192.168.88." + ip + ":8080/company";
+    	
+    	String tURL = "http://18.236.70.220:"+ ip + "/company";
         UriComponentsBuilder builder = UriComponentsBuilder.
                 fromUriString(tURL);
         this.supplier = supplier;
@@ -95,14 +97,26 @@ public class StockPriceService {
     
     @Scheduled(fixedRate=10000)
     public void updateStocks() {
+    	StockPrice store = findById(1);
+    	getStock(store);
+    	System.out.println("\n ================================== \n");
     	StockPrice vendorA = findById(2);
     	getStock(vendorA);
     	System.out.println("\n ================================== \n");
-    	StockPrice supplierC = findById(7);
-    	getStock(supplierC);
+    	StockPrice vendorB = findById(3);
+    	getStock(vendorB);
+    	System.out.println("\n ================================== \n");
+    	StockPrice vendorC = findById(4);
+    	getStock(vendorC);
     	System.out.println("\n ================================== \n");
     	StockPrice supplierA = findById(5);
     	getStock(supplierA);
+    	System.out.println("\n ================================== \n");
+    	StockPrice supplierB = findById(6);
+    	getStock(supplierB);
+    	System.out.println("\n ================================== \n");
+    	StockPrice supplierC = findById(7);
+    	getStock(supplierC);
     	System.out.println("\n ================================== \n");
     }
 }
