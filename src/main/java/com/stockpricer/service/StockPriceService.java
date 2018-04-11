@@ -2,8 +2,11 @@ package com.stockpricer.service;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.concurrent.CompletableFuture;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Async;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -43,6 +46,8 @@ public class StockPriceService {
          convertCashAndValue() ;
     }
     
+    
+    
     public ArrayList<Double> convertCashAndValue() {
 	    ArrayList<Double> cashAndInventory = new ArrayList<Double>();
 	    ObjectMapper mapper = new ObjectMapper();
@@ -58,7 +63,7 @@ public class StockPriceService {
 		    } catch (IOException e) {
 		    
 		        e.printStackTrace();
-		    }    System.out.println( "cash on hand  "+cashAndInventory.get(0));
+		    }
 		    calculateStock(cashAndInventory);
 	    return cashAndInventory; 
     }
@@ -68,17 +73,16 @@ public class StockPriceService {
     	double prevTotalValue = supplier.getTotalValue();
     	double currentCash = cashAndInventory.get(0);
     	double currentInventoryValue = cashAndInventory.get(1);
+    	System.out.println("Name: " + supplier.getName());
     	System.out.println("Prev Inventory Value: " + supplier.getInventoryValue());
-    	System.out.println("Current inventory Value: " + currentInventoryValue);
+    	System.out.println("Current Inventory Value: " + currentInventoryValue);
     	double currentTotalValue = currentCash + (0.7 * currentInventoryValue);
     	double percentChange = (currentTotalValue - prevTotalValue)/prevTotalValue;
-    	System.out.println("Change in TotalValue: " + (percentChange*100) +"%");
+    	System.out.println("Change in TotalValue: " + (percentChange*100) +" %");
     	double stockChange = percentChange * prevStockPrice;
-    	System.out.println("Stock Change: " + stockChange);
     	double newStockPrice = prevStockPrice + stockChange;
-    	System.out.println("Prev Total: " + prevTotalValue);
     	System.out.println("Total value: " + currentTotalValue);
-    	System.out.println("new stock price: " + newStockPrice);
+    	System.out.println("Stock Price: " + newStockPrice);
     	int id = supplier.getId();
     	updateValues(id,currentTotalValue,newStockPrice,currentInventoryValue);
     	return newStockPrice;
@@ -89,5 +93,17 @@ public class StockPriceService {
     }
     
     
+    @Scheduled(fixedRate=10000)
+    public void updateStocks() {
+    	StockPrice vendorA = findById(2);
+    	getStock(vendorA);
+    	System.out.println("\n ================================== \n");
+    	StockPrice supplierC = findById(7);
+    	getStock(supplierC);
+    	System.out.println("\n ================================== \n");
+    	StockPrice supplierA = findById(5);
+    	getStock(supplierA);
+    	System.out.println("\n ================================== \n");
+    }
 }
 

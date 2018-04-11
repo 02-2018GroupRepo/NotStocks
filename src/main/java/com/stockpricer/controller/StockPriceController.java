@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.stockpricer.model.StockPrice;
+
 import com.stockpricer.service.StockPriceService;
 
 @RestController
@@ -20,7 +21,6 @@ public class StockPriceController {
 			StockPrice supplier= stockPriceService.findById(id);
 			stockPriceService.getStock(supplier);
 			return supplier;
-		
 	    }
 		
 		@RequestMapping(method=RequestMethod.GET)
