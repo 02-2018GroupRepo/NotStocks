@@ -7,10 +7,10 @@ public class StockPrice {
 	private int id;
 	private String ip;
 	private String name;
-	private BigDecimal cash;
-	private BigDecimal inventory_value;
-	private BigDecimal 	total_value;
-	private BigDecimal stock_price;
+	private double cash;
+	private double inventory_value;
+	private double 	total_value;
+	private double stock_price;
 	
 	
 	
@@ -18,27 +18,27 @@ public class StockPrice {
 		return id;
 	}
 	
-	public BigDecimal getCash() {
+	public double getCash() {
 		return cash;
 	}
 
-	public void setCash(BigDecimal cash) {
+	public void setCash(double cash) {
 		this.cash = cash;
 	}
 
-	public BigDecimal getInventory_value() {
+	public double getInventoryValue() {
 		return inventory_value;
 	}
 
-	public void setInventory_value(BigDecimal inventory_value) {
+	public void setInventoryValue(double inventory_value) {
 		this.inventory_value = inventory_value;
 	}
 
-	public BigDecimal getTotal_value() {
+	public double getTotalValue() {
 		return total_value;
 	}
 
-	public void setTotal_value(BigDecimal total_value) {
+	public void setTotalValue(double total_value) {
 		this.total_value = total_value;
 	}
 
@@ -58,15 +58,10 @@ public class StockPrice {
 		this.name = name;
 	}
 	
-	
-	public BigDecimal getStock_price() {
+	public double getStockPrice() {
 		return stock_price;
 	}
-	public void setStock_price(BigDecimal stock_price) {
+	public void setStockPrice(double stock_price) {
 		this.stock_price = stock_price;
 	}
-	
-	
-	
-
 }

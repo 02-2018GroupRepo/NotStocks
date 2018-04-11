@@ -17,10 +17,9 @@ public class StockPriceController {
 		
 		@RequestMapping("/stock/{id}")
 	    public StockPrice getStockId(@PathVariable("id") int id) {
-			StockPrice s= stockPriceService.findById(id);
-			String ip = s.getIp();
-			stockPriceService.getStock(ip);
-			return s;
+			StockPrice supplier= stockPriceService.findById(id);
+			stockPriceService.getStock(supplier);
+			return supplier;
 		
 	    }
 		
