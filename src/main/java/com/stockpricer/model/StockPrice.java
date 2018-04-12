@@ -1,7 +1,5 @@
 package com.stockpricer.model;
 
-import java.math.BigDecimal;
-
 public class StockPrice {
 	
 	private int id;
@@ -11,9 +9,17 @@ public class StockPrice {
 	private double inventory_value;
 	private double 	total_value;
 	private double stock_price;
+	private double percent_change = 0.0;
 	
 	
-	
+	public double getPercent_change() {
+		return percent_change;
+	}
+
+	public void setPercent_change(double percent_change) {
+		this.percent_change = percent_change;
+	}
+
 	public int getId() {
 		return id;
 	}

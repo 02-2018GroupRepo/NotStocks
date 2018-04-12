@@ -89,6 +89,14 @@
             <artifactId>jackson-databind</artifactId>
             <version>2.6.3</version>
         </dependency>
+        
+        <!-- https://mvnrepository.com/artifact/com.massisframework/j-text-utils -->
+		<dependency>
+		    <groupId>com.massisframework</groupId>
+		    <artifactId>j-text-utils</artifactId>
+		    <version>0.3.4</version>
+		</dependency>
+        
 	</dependencies>
 
 	<build>

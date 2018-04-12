@@ -26,9 +26,9 @@ public class StockPriceDao{
 		return jdbcTemplate.queryForObject(STOCK_ID, new Object[] {id}, new BeanPropertyRowMapper<>(StockPrice.class));
 	}
 	
-	public void updateValue(int id, double total, double stockPrice, double inventoryValue) {
-		String SQL = "UPDATE stocks SET total_value=?, inventory_value=?, stock_price=?  WHERE id="+ id;
-		jdbcTemplate.update(SQL, new Object[] {total, inventoryValue, stockPrice});
+	public void updateValue(int id, double total, double cash, double stockPrice, double inventoryValue) {
+		String SQL = "UPDATE stocks SET total_value=?, cash=?, inventory_value=?, stock_price=?  WHERE id="+ id;
+		jdbcTemplate.update(SQL, new Object[] {total, cash, inventoryValue, stockPrice});
 	}
 	
 }
