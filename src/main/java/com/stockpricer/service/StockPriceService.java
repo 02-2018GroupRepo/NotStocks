@@ -77,17 +77,10 @@ public class StockPriceService {
     	double prevTotalValue = supplier.getTotalValue();
     	double currentCash = cashAndInventory.get(0);
     	double currentInventoryValue = cashAndInventory.get(1);
-//    	System.out.println("Name: " + supplier.getName());
-//    	System.out.println(String.format("Prev Inventory Value: " + "%.2f", supplier.getInventoryValue()));
-//    	System.out.println(String.format("Current Inventory Value: " + "%.2f", currentInventoryValue));
     	double currentTotalValue = currentCash + (0.7 * currentInventoryValue);
     	double percentChange = (currentTotalValue - prevTotalValue)/prevTotalValue;
-    	
-//    	System.out.println(String.format("Change in TotalValue: "  + "%.2f" + "%%", percentChange*100));
     	double stockChange = percentChange * prevStockPrice;
     	double newStockPrice = prevStockPrice + stockChange;
-//    	System.out.println(String.format("Total value: " + "%.2f", currentTotalValue));
-//    	System.out.println(String.format("Stock Price: " + "%.2f", newStockPrice));
     	int id = supplier.getId();
     	supplier.setPercent_change(percentChange * 100);
     	updateValues(id,currentTotalValue, currentCash, newStockPrice,currentInventoryValue);
@@ -103,26 +96,11 @@ public class StockPriceService {
     public void updateStocks() {    	
     	StockPrice store = findById(1);
     	getStock(store);
-//    	System.out.println("\n ================================== \n");
     	StockPrice vendorA = findById(2);
     	getStock(vendorA);
-//    	System.out.println("\n ================================== \n");
-//    	StockPrice vendorB = findById(3);
-//    	getStock(vendorB);
-//    	System.out.println("\n ================================== \n");
-//    	StockPrice vendorC = findById(4);
-//    	getStock(vendorC);
-//    	System.out.println("\n ================================== \n");
     	StockPrice supplierA = findById(5);
     	getStock(supplierA);
-//    	System.out.println("\n ================================== \n");
-//    	StockPrice supplierB = findById(6);
-//    	getStock(supplierB);
-//    	System.out.println("\n ================================== \n");
-//    	StockPrice supplierC = findById(7);
-//    	getStock(supplierC);
-//    	System.out.println("\n ================================== \n");
-//    	
+
    	 	String[] columnNames = {"Name", "Stock Price", "Percent Change", "Total Value", "Cash", "Inventory Value"};
    	 	Object[][] data = {{"Store", String.format("%.2f", store.getStockPrice()), String.format("%.2f" + " %%", store.getPercent_change()), String.format("%.2f", store.getTotalValue()), String.format("%.2f", store.getCash()), String.format("%.2f", store.getInventoryValue())}, 
    	 			{"Vendor", String.format("%.2f", vendorA.getStockPrice()), String.format("%.2f" + " %%", vendorA.getPercent_change()), String.format("%.2f", vendorA.getTotalValue()), String.format("%.2f", vendorA.getCash()), String.format("%.2f", vendorA.getInventoryValue())}, 
